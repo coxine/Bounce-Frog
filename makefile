@@ -1,9 +1,7 @@
-#Reference: https://lazyfoo.net/tutorials/SDL/01_hello_SDL/windows/mingw/index.php
-
-OBJS = main.c src/utils/quit.c src/utils/styleOp.c src/config/elementStyle.c
+OBJS = src/main.c src/utils/quit.c src/utils/styleOp.c src/config/elementStyle.c
 CC = gcc
 WARNING_FLAGS = -Wall -Werror -Wextra 
-INCLUDE_PATHS = -ID:/SDL/include
+INCLUDE_PATHS = -ID:/SDL/include -I./include
 LIBRARY_PATHS = -LD:/SDL/lib
 LINKER_FLAGS = -lmingw32 -lSDL2main -lSDL2
 OBJ_NAME = ./bin/main

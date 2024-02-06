@@ -1,5 +1,5 @@
-#ifndef SRC_CONFIG_ELEMENTSTYLE_H_
-#define SRC_CONFIG_ELEMENTSTYLE_H_
+#ifndef INCLUDE_CONFIG_ELEMENTSTYLE_H_
+#define INCLUDE_CONFIG_ELEMENTSTYLE_H_
 
 typedef struct Color {
     int r;
@@ -13,4 +13,5 @@ typedef struct ObjectStyle {
 } objectStyle;
 
 extern const objectStyle windowStyle;
+
 #endif

@@ -1,5 +1,5 @@
-#ifndef SRC_CONFIG_CONFIG_H_
-#define SRC_CONFIG_CONFIG_H_
+#ifndef INCLUDE_CONFIG_CONFIG_H_
+#define INCLUDE_CONFIG_CONFIG_H_
 
 // 解绑
 #undef main

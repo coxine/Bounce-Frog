@@ -1,5 +1,5 @@
 {
-    "code-runner.executorMap": {
-        "c": "cd $dir && gcc $fileName -Wall -Werror -Wextra -LD:/SDL/lib -lmingw32 -lSDL2main -lSDL2 -o $fileNameWithoutExt && $dir$fileNameWithoutExt",
-    }
+    "C_Cpp.default.includePath": [
+        "${workspaceRoot}/include"
+    ]
 }

@@ -1,15 +1,12 @@
-#include "SDL2/SDL.h"
-#include "SDL2/SDL_image.h"
-#include "src/config/config.h"
-#include "src/utils/quit.h"
-#include "src/utils/styleOp.h"
-#include <stdbool.h>
-#include <stdio.h>
+#include <main.h>
 
 int main()
 {
     SDL_Window *SDLWindow = NULL;
-    SDL_Init(SDL_INIT_VIDEO);
+    if (SDL_Init(SDL_INIT_VIDEO) < 0) {
+        printf("Init SDL: %s\n", SDL_GetError());
+        exit(EXIT_FAILURE);
+    };
     // create window
     SDLWindow = SDL_CreateWindow("跳一跳", START_X, START_Y, SCREEN_WIDTH, SCREEN_HEIGHT, SDL_WINDOW_SHOWN);
 

@@ -1,4 +1,4 @@
-#include "quit.h"
+#include <utils/quit.h>
 
 void Quit(SDL_Window *window, SDL_Renderer *renderer)
 {

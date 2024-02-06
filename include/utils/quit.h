@@ -1,5 +1,5 @@
-#ifndef SRC_UTILS_QUIT_H_
-#define SRC_UTILS_QUIT_H_
+#ifndef INCLUDE_UTILS_QUIT_H_
+#define INCLUDE_UTILS_QUIT_H_
 
 #include "SDL2/SDL.h"
 

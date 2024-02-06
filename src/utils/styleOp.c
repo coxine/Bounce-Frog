@@ -1,4 +1,4 @@
-#include "styleOp.h"
+#include <utils/styleOp.h>
 
 void changeBgColor(SDL_Renderer *renderer, color color)
 {
