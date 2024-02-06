@@ -3,6 +3,7 @@
 
 #include <common.h>
 #include <config/config.h>
+#include <startPage.h>
 #include <utils/quit.h>
 #include <utils/styleOp.h>
 
