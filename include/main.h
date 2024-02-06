@@ -6,4 +6,7 @@
 #include <utils/quit.h>
 #include <utils/styleOp.h>
 
+static void InitApp();
+static void StartUp();
+
 #endif

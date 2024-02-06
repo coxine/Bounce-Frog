@@ -1,10 +1,11 @@
 #include <utils/quit.h>
 
-void Quit(SDL_Window *window, SDL_Renderer *renderer)
+void Quit(App *app)
 {
     // Destroy window
-    SDL_DestroyWindow(window);
-    SDL_DestroyRenderer(renderer);
+    SDL_FreeSurface(app->windowIcon);
+    SDL_DestroyWindow(app->window);
+    SDL_DestroyRenderer(app->renderer);
     // Quit SDL subsystems
     SDL_Quit();
 }

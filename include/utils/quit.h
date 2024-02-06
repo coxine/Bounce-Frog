@@ -2,8 +2,9 @@
 #define INCLUDE_UTILS_QUIT_H_
 
 #include "SDL2/SDL.h"
+#include <common.h>
 
 // Quit SDL subsystem
-void Quit(SDL_Window *window, SDL_Renderer *renderer);
+void Quit(App *app);
 
 #endif

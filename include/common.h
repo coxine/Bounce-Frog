@@ -8,4 +8,14 @@
 #include <stdbool.h>
 #include <stdio.h>
 #include <stdlib.h>
+
+#define HANDLE_ERROR(msg)                 \
+    printf(msg ": %s\n", SDL_GetError()); \
+    exit(EXIT_FAILURE);
+typedef struct {
+    SDL_Window *window;
+    SDL_Renderer *renderer;
+    SDL_Surface *windowIcon;
+} App;
+extern App app;
 #endif

@@ -4,10 +4,11 @@
 // 解绑
 #undef main
 
-// 窗口长宽，起点
-const int SCREEN_WIDTH = 1280;
-const int SCREEN_HEIGHT = 720;
-const int START_X = 100;
-const int START_Y = 100;
+// 窗口
+#define SCREEN_WIDTH 1280
+#define SCREEN_HEIGHT 720
+#define START_X 100
+#define START_Y 100
+#define WINDOW_TITLE "跳一跳"
 
 #endif
