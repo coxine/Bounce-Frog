@@ -1,4 +1,5 @@
 #include <startPage.h>
+
 Image StartPageTitle = {
     .file = "../static/img/Title.svg",
     .height = 200,
@@ -7,6 +8,7 @@ Image StartPageTitle = {
     .x = 440,
     .y = 100,
 };
+
 void DisplayStartPage(App *app)
 {
     LoadImage(app, &StartPageTitle);
