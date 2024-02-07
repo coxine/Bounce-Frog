@@ -1,23 +1,23 @@
 #include <utils/button.h>
 
-Button *InitButton(int height, int width, int x, int y, char *file, char *name)
+Button *InitButton(int height, int width, int x, int y, char *file, char *name, char *hovFile)
 {
     Button *button = malloc(sizeof(Button));
     button->img = malloc(sizeof(Image));
     button->imgOnHover = malloc(sizeof(Image));
 
-    button->img->file = malloc(sizeof(char) * 10086);
-    button->img->name = malloc(sizeof(char) * 10086);
-    button->imgOnHover->file = malloc(sizeof(char) * 10086);
-    button->imgOnHover->name = malloc(sizeof(char) * 10086);
-    button->name = malloc(sizeof(char) * 10086);
+    button->img->file = malloc(sizeof(char) * (strlen(file) + 1));
+    button->img->name = malloc(sizeof(char) * (strlen(name) + 1));
+    button->imgOnHover->file = malloc(sizeof(char) * (strlen(hovFile) + 1));
+    button->imgOnHover->name = malloc(sizeof(char) * (strlen(name) + 1));
+    button->name = malloc(sizeof(char) * (strlen(name) + 1));
     button->height = height;
     button->width = width;
     button->x = x;
     button->y = y;
     strcpy(button->img->file, file);
     strcpy(button->img->name, name);
-    strcpy(button->imgOnHover->file, file);
+    strcpy(button->imgOnHover->file, hovFile);
     strcpy(button->imgOnHover->name, name);
     strcpy(button->name, name);
     return button;

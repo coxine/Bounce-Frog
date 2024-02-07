@@ -14,7 +14,7 @@ typedef struct {
     int y;
 } Button;
 
-Button *InitButton(int height, int width, int x, int y, char *file, char *name);
+Button *InitButton(int height, int width, int x, int y, char *file, char *name, char *hovFile);
 void LoadButton(App *app, Button *button);
 bool isHover(Button *button);
 bool isClick(Button *button);

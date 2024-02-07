@@ -9,28 +9,6 @@ int main()
     InitApp();
     StartUp();
     DisplayStartPage(&app);
-    SDL_Event event;
-    while (1) {
-        while (SDL_PollEvent(&event)) {
-            switch (event.type) {
-            case SDL_QUIT:
-                Quit(&app);
-                return 0;
-                break;
-            case SDL_MOUSEBUTTONDOWN:
-                break;
-            case SDL_MOUSEBUTTONUP:
-                break;
-            case SDL_KEYDOWN:
-                break;
-            case SDL_KEYUP:
-                break;
-            default:
-                break;
-            }
-        }
-        SDL_Delay(5);
-    }
     return 0;
 }
 
