@@ -2,6 +2,8 @@
 
 App app;
 
+const objectStyle window = {.color = {.r = 0xdd, .g = 0xee, .b = 0xff, .a = 0xff}};
+
 int main()
 {
     InitApp();
@@ -58,5 +60,5 @@ static void StartUp()
         HANDLE_ERROR("Load Icon");
     };
     SDL_SetWindowIcon(app.window, app.windowIcon);
-    changeBgColor(app.renderer, windowStyle.color);
+    changeBgColor(app.renderer, window.color);
 }
