@@ -8,12 +8,23 @@
                 "-fdiagnostics-color=always",
                 "-g",
                 "${file}",
+                // "${fileDirname}/src/main.c",
+                "${fileDirname}/common.c",
+                "${fileDirname}/startPage.c",
+                "${fileDirname}/utils/button.c",
+                "${fileDirname}/utils/image.c ",
+                "${fileDirname}/utils/quit.c",
+                "${fileDirname}/utils/style.c",
+                "-ID:/SDL/include",
+                "-ID:/ghrepo/Jump-Jump/include",
+                "-LD:/SDL/lib",
                 "-o",
                 "${fileDirname}\\${fileBasenameNoExtension}.exe",
                 "-lSDL2main",
                 "-lSDL2",
                 "-lSDL2_image",
                 "-lSDL2_ttf",
+                "-lSDL2_mixer"
             ],
             "options": {
                 "cwd": "${fileDirname}"

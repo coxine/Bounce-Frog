@@ -1,9 +1,26 @@
 #include <utils/image.h>
 
+Image *InitImage(char *file, int height, int width, char *name, int x, int y)
+{
+    Image *img = malloc(sizeof(Image));
+    if (img == NULL) {
+        exit(EXIT_FAILURE);
+    }
+    img->height = height;
+    img->width = width;
+    img->x = x;
+    img->y = y;
+    img->file = malloc(strlen(file) + 1);
+    strcpy(img->file, file);
+    img->name = malloc(strlen(name) + 1);
+    strcpy(img->name, name);
+    return img;
+}
+
 void LoadImage(App *app, Image *img)
 {
     // Create Surface & Rect
-    SDL_Surface *src = IMG_Load("../static/img/Title.svg");
+    SDL_Surface *src = IMG_Load(img->file);
     if (src == NULL) {
         printf("Load %s : %s\n", img->name, SDL_GetError());
         exit(EXIT_FAILURE);
