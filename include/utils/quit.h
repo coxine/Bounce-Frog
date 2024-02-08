@@ -20,9 +20,8 @@
 #include <common.h>
 #include <utils/button.h>
 
-QuitPage *InitQuitPage(App *app);
-void LoadQuitPage(App *app, QuitPage *quitpage);
+QuitPage *InitQuitPage();
+void DrawQuitPage(App *app);
 void DestroyWindow(App *app);
-void Quit(App *app);
 
 #endif

@@ -9,7 +9,6 @@
 #define WINDOW_TITLE "青蛙跳跳"
 
 #include <common.h>
-#include <startPage.h>
 
 // 解绑
 #undef main

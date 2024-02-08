@@ -1,4 +1,4 @@
-OBJS = src/main.c src/common.c src/startPage.c src/utils/button.c src/utils/image.c src/utils/quit.c src/utils/style.c
+OBJS = src/main.c src/common.c src/event.c src/startPage.c src/utils/button.c src/utils/image.c src/utils/quit.c src/utils/style.c 
 CC = gcc
 WARNING_FLAGS = -Wall -Werror -Wextra 
 INCLUDE_PATHS = -ID:/SDL/include -I./include

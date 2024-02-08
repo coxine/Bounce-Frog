@@ -1,8 +1,9 @@
 #include <startPage.h>
 
-StartPage *InitStartPage(App *app)
+extern const ObjectStyle window;
+
+StartPage *InitStartPage()
 {
-    app->curScene = StartScene;
     StartPage *startpage = malloc(sizeof(StartPage));
     if (startpage == NULL) {
         puts("Fail to Init StartPage");
@@ -14,45 +15,11 @@ StartPage *InitStartPage(App *app)
     return startpage;
 }
 
-void LoadStartPage(App *app, StartPage *startpage)
+void DrawStartPage(App *app)
 {
-    LoadImage(app, startpage->startPageTitle);
-    LoadButton(app, startpage->startGame);
-    LoadButton(app, startpage->godMode);
-
-    // event
-    SDL_Event event;
-    while (app->curScene == StartScene) {
-        while (SDL_PollEvent(&event)) {
-            switch (event.type) {
-            case SDL_QUIT:
-                Quit(app);
-                puts("222");
-                break;
-            case SDL_MOUSEMOTION:
-                if (isHover(startpage->startGame)) {
-                    LoadImage(app, startpage->startGame->imgOnHover);
-                } else {
-                    LoadImage(app, startpage->startGame->img);
-                }
-                if (isHover(startpage->godMode)) {
-                    LoadImage(app, startpage->godMode->imgOnHover);
-                } else {
-                    LoadImage(app, startpage->godMode->img);
-                }
-                break;
-            case SDL_MOUSEBUTTONDOWN:
-                if (isClick(startpage->startGame)) {
-                    puts("111");
-                }
-                if (isClick(startpage->godMode)) {
-                    puts("222");
-                }
-                break;
-            default:
-                break;
-            }
-        }
-        SDL_Delay(2);
-    }
+    app->curScene = StartScene;
+    changeBgColor(app->renderer, window.color);
+    LoadImage(app, app->startpage->startPageTitle);
+    LoadButton(app, app->startpage->startGame);
+    LoadButton(app, app->startpage->godMode);
 }

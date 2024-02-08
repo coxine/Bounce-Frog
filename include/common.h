@@ -18,6 +18,9 @@
 #include <utils/quit.h>
 #include <utils/style.h>
 
+#include <event.h>
+#include <startPage.h>
+
 extern App app;
 
 #define HANDLE_ERROR(msg)                 \

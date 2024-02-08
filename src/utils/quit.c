@@ -2,50 +2,8 @@
 
 extern ObjectStyle window;
 
-void Quit(App *app)
+QuitPage *InitQuitPage()
 {
-    changeBgColor(app->renderer, window.color);
-    QuitPage *quitpage = InitQuitPage(app);
-    LoadQuitPage(app, quitpage);
-
-    // event
-    SDL_Event event;
-    while (app->curScene == QuitScene) {
-        while (SDL_PollEvent(&event)) {
-            switch (event.type) {
-            case SDL_MOUSEMOTION:
-                if (isHover(quitpage->kontinue)) {
-                    LoadImage(app, quitpage->kontinue->imgOnHover);
-                } else {
-                    LoadImage(app, quitpage->kontinue->img);
-                }
-                if (isHover(quitpage->quit)) {
-                    LoadImage(app, quitpage->quit->imgOnHover);
-                } else {
-                    LoadImage(app, quitpage->quit->img);
-                }
-                break;
-            case SDL_MOUSEBUTTONDOWN:
-                if (isClick(quitpage->kontinue)) {
-                    app->curScene = StartScene;
-                    return;
-                }
-                if (isClick(quitpage->quit)) {
-                    DestroyWindow(app);
-                    exit(EXIT_SUCCESS);
-                }
-                break;
-            default:
-                break;
-            }
-        }
-        SDL_Delay(2);
-    }
-}
-
-QuitPage *InitQuitPage(App *app)
-{
-    app->curScene = QuitScene;
     QuitPage *quitpage = malloc(sizeof(QuitPage));
     if (quitpage == NULL) {
         puts("Fail to Init QuitPage");
@@ -56,10 +14,12 @@ QuitPage *InitQuitPage(App *app)
     return quitpage;
 }
 
-void LoadQuitPage(App *app, QuitPage *quitpage)
+void DrawQuitPage(App *app)
 {
-    LoadButton(app, quitpage->kontinue);
-    LoadButton(app, quitpage->quit);
+    app->curScene = QuitScene;
+    changeBgColor(app->renderer, window.color);
+    LoadButton(app, app->quitpage->kontinue);
+    LoadButton(app, app->quitpage->quit);
 }
 
 void DestroyWindow(App *app)

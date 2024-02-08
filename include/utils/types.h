@@ -13,14 +13,6 @@ enum scene {
 };
 
 typedef struct {
-    SDL_Window *window;
-    SDL_Renderer *renderer;
-    SDL_Surface *windowIcon;
-    enum scene curScene;
-    int maxScore;
-} App;
-
-typedef struct {
     int r;
     int g;
     int b;
@@ -62,4 +54,14 @@ typedef struct {
     Button *quit;
 } QuitPage;
 
+typedef struct {
+    SDL_Window *window;
+    SDL_Renderer *renderer;
+    SDL_Surface *windowIcon;
+    enum scene curScene;
+    int maxScore;
+    SDL_Event *event;
+    StartPage *startpage;
+    QuitPage *quitpage;
+} App;
 #endif

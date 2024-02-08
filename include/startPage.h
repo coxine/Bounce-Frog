@@ -26,6 +26,6 @@
 
 #include <common.h>
 
-StartPage *InitStartPage(App *app);
-void LoadStartPage(App *app, StartPage *startpage);
+StartPage *InitStartPage();
+void DrawStartPage(App *app);
 #endif

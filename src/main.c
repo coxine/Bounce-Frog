@@ -8,8 +8,10 @@ int main()
 {
     InitApp();
     StartUp();
-    StartPage *startpage = InitStartPage(&app);
-    LoadStartPage(&app, startpage);
+    DrawStartPage(&app);
+    while (1) {
+        DoEvent(&app);
+    }
     return 0;
 }
 
@@ -32,6 +34,7 @@ static void InitApp()
 
 static void StartUp()
 {
+    // window
     app.window = SDL_CreateWindow(WINDOW_TITLE, START_X, START_Y, SCREEN_WIDTH, SCREEN_HEIGHT, SDL_WINDOW_SHOWN);
     app.renderer = SDL_CreateRenderer(app.window, -1, SDL_RENDERER_ACCELERATED);
     app.windowIcon = IMG_Load("../static/img/Icon.png");
@@ -40,5 +43,8 @@ static void StartUp()
         HANDLE_ERROR("Load Icon");
     };
     SDL_SetWindowIcon(app.window, app.windowIcon);
-    changeBgColor(app.renderer, window.color);
+
+    // scene
+    app.startpage = InitStartPage();
+    app.quitpage = InitQuitPage();
 }
