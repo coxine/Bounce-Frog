@@ -18,6 +18,9 @@ void DoEvent(App *app)
             case StartScene:
                 StartSceneEvent(app);
                 break;
+            case GameScene:
+                GameSceneEvent(app);
+                break;
             case OverScene:
                 OverSceneEvent(app);
                 break;
@@ -28,12 +31,13 @@ void DoEvent(App *app)
                 break;
             }
         }
-        SDL_Delay(2);
+        SDL_Delay(5);
     }
 }
 
 void StartSceneEvent(App *app)
 {
+    SDL_Scancode scanCode = (*(app->event)).key.keysym.scancode;
     switch ((*(app->event)).type) {
     case SDL_QUIT:
         DrawQuitPage(app);
@@ -44,7 +48,7 @@ void StartSceneEvent(App *app)
         break;
     case SDL_MOUSEBUTTONDOWN:
         if (isClick(app->startpage->startGame)) {
-            DrawOverPage(app);
+            DrawOverPage(app); // for test
             return;
         }
         if (isClick(app->startpage->godMode)) {
@@ -52,18 +56,27 @@ void StartSceneEvent(App *app)
             return;
         }
         break;
+    default:
+        break;
+    }
+}
+
+void GameSceneEvent(App *app)
+{
+    SDL_Scancode scanCode = (*(app->event)).key.keysym.scancode;
+    switch ((*(app->event)).type) {
+    case SDL_QUIT:
+        DrawQuitPage(app);
+        break;
     case SDL_KEYDOWN:
-        if (!app->keyPress[(*(app->event)).key.keysym.scancode]) {
-            app->keyTimestamp[(*(app->event)).key.keysym.scancode][0] = (*(app->event)).key.timestamp;
-            app->keyPress[(*(app->event)).key.keysym.scancode] = true;
-            printf("%ums\n", (*(app->event)).key.timestamp);
+        if (!app->keyPress[scanCode]) {
+            app->keyTimestamp[scanCode][0] = (*(app->event)).key.timestamp;
+            app->keyPress[scanCode] = true;
         }
         break;
     case SDL_KEYUP:
-        app->keyTimestamp[(*(app->event)).key.keysym.scancode][1] = (*(app->event)).key.timestamp;
-        app->keyPress[(*(app->event)).key.keysym.scancode] = false;
-        printf("%ums\n", (*(app->event)).key.timestamp);
-        printf("%ums\n", app->keyTimestamp[(*(app->event)).key.keysym.scancode][1] - app->keyTimestamp[(*(app->event)).key.keysym.scancode][0]);
+        app->keyTimestamp[scanCode][1] = (*(app->event)).key.timestamp;
+        app->keyPress[scanCode] = false;
         break;
     default:
         break;
@@ -102,5 +115,16 @@ void QuitSceneEvent(App *app)
         break;
     default:
         break;
+    }
+}
+
+Uint32 GetKeyPressTime(App *app, SDL_Scancode scancode)
+{
+    Uint32 press_time = app->keyTimestamp[scancode][0];
+    Uint32 release_time = app->keyTimestamp[scancode][1];
+    if (press_time > 0 && release_time >= press_time) {
+        return release_time - press_time;
+    } else {
+        return 0;
     }
 }
