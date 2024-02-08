@@ -11,19 +11,14 @@
 #include <stdlib.h>
 #include <string.h>
 
-typedef struct {
-    SDL_Window *window;
-    SDL_Renderer *renderer;
-    SDL_Surface *windowIcon;
-    int curScene;
-} App;
-
-extern App app;
+#include <utils/types.h>
 
 #include <utils/button.h>
 #include <utils/image.h>
 #include <utils/quit.h>
 #include <utils/style.h>
+
+extern App app;
 
 #define HANDLE_ERROR(msg)                 \
     printf(msg ": %s\n", SDL_GetError()); \

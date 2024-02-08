@@ -14,7 +14,7 @@
 // 解绑
 #undef main
 
-extern const objectStyle window;
+extern const ObjectStyle window;
 
 static void InitApp();
 static void StartUp();

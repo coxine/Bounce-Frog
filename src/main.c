@@ -2,13 +2,14 @@
 
 App app;
 
-const objectStyle window = {.color = {.r = 0xdd, .g = 0xee, .b = 0xff, .a = 0xff}};
+const ObjectStyle window = {.color = {.r = 0xdd, .g = 0xee, .b = 0xff, .a = 0xff}};
 
 int main()
 {
     InitApp();
     StartUp();
-    DisplayStartPage(&app);
+    StartPage *startpage = InitStartPage(&app);
+    LoadStartPage(&app, startpage);
     return 0;
 }
 
@@ -34,6 +35,7 @@ static void StartUp()
     app.window = SDL_CreateWindow(WINDOW_TITLE, START_X, START_Y, SCREEN_WIDTH, SCREEN_HEIGHT, SDL_WINDOW_SHOWN);
     app.renderer = SDL_CreateRenderer(app.window, -1, SDL_RENDERER_ACCELERATED);
     app.windowIcon = IMG_Load("../static/img/Icon.png");
+    app.maxScore = 0;
     if (app.windowIcon == NULL) {
         HANDLE_ERROR("Load Icon");
     };

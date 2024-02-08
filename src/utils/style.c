@@ -1,6 +1,6 @@
 #include <utils/style.h>
 
-void changeBgColor(SDL_Renderer *renderer, color color)
+void changeBgColor(SDL_Renderer *renderer, Color color)
 {
     int r = color.r;
     int g = color.g;

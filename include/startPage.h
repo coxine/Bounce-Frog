@@ -26,14 +26,6 @@
 
 #include <common.h>
 
-typedef struct {
-
-} StartPage;
-
-extern Image *startPageTitle;
-extern Button *StartGame;
-extern Button *godMode;
-
-void DisplayStartPage(App *app);
-void DestroyStartPage();
+StartPage *InitStartPage(App *app);
+void LoadStartPage(App *app, StartPage *startpage);
 #endif
