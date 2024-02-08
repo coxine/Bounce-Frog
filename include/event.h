@@ -5,5 +5,7 @@
 
 void InitEvent(App *app);
 void DoEvent(App *app);
+void StartSceneEvent(App *app);
+void QuitSceneEvent(App *app);
 
 #endif
