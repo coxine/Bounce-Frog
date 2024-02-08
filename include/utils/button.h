@@ -4,11 +4,12 @@
 #include <common.h>
 #include <utils/image.h>
 
-Button *InitButton(int height, int width, int x, int y, char *file, char *name, char *hovFile);
+Button *InitButton(int height, int width, int x, int y, char *file, char *name, char *hovFile, void (*onClick)(void));
 void LoadButton(App *app, Button *button);
 bool isHover(Button *button);
 bool isClick(Button *button);
 void UpdateButton(App *app, Button *button);
+void DoButton(Button *button);
 void DestroyButton(Button *button);
 
 #endif

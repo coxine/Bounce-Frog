@@ -37,23 +37,17 @@ void StartSceneEvent(App *app)
         DrawQuitPage(app);
         break;
     case SDL_MOUSEMOTION:
-        if (isHover(app->startpage->startGame)) {
-            LoadImage(app, app->startpage->startGame->imgOnHover);
-        } else {
-            LoadImage(app, app->startpage->startGame->img);
-        }
-        if (isHover(app->startpage->godMode)) {
-            LoadImage(app, app->startpage->godMode->imgOnHover);
-        } else {
-            LoadImage(app, app->startpage->godMode->img);
-        }
+        UpdateButton(app, app->startpage->startGame);
+        UpdateButton(app, app->startpage->godMode);
         break;
     case SDL_MOUSEBUTTONDOWN:
         if (isClick(app->startpage->startGame)) {
             puts("111");
+            return;
         }
         if (isClick(app->startpage->godMode)) {
             puts("222");
+            return;
         }
         break;
     default:
@@ -65,26 +59,12 @@ void QuitSceneEvent(App *app)
 {
     switch ((*(app->event)).type) {
     case SDL_MOUSEMOTION:
-        if (isHover(app->quitpage->kontinue)) {
-            LoadImage(app, app->quitpage->kontinue->imgOnHover);
-        } else {
-            LoadImage(app, app->quitpage->kontinue->img);
-        }
-        if (isHover(app->quitpage->quit)) {
-            LoadImage(app, app->quitpage->quit->imgOnHover);
-        } else {
-            LoadImage(app, app->quitpage->quit->img);
-        }
+        UpdateButton(app, app->quitpage->kontinue);
+        UpdateButton(app, app->quitpage->quit);
         break;
     case SDL_MOUSEBUTTONDOWN:
-        if (isClick(app->quitpage->kontinue)) {
-            DrawStartPage(app);
-            return;
-        }
-        if (isClick(app->quitpage->quit)) {
-            DestroyWindow(app);
-            exit(EXIT_SUCCESS);
-        }
+        DoButton(app->quitpage->kontinue);
+        DoButton(app->quitpage->quit);
         break;
     default:
         break;

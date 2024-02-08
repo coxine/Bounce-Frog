@@ -1,6 +1,6 @@
 #include <utils/button.h>
 
-Button *InitButton(int height, int width, int x, int y, char *file, char *name, char *hovFile)
+Button *InitButton(int height, int width, int x, int y, char *file, char *name, char *hovFile, void (*onClick)(void))
 {
     Button *button = malloc(sizeof(Button));
     button->img = malloc(sizeof(Image));
@@ -20,6 +20,7 @@ Button *InitButton(int height, int width, int x, int y, char *file, char *name, 
     strcpy(button->imgOnHover->file, hovFile);
     strcpy(button->imgOnHover->name, name);
     strcpy(button->name, name);
+    button->onClick = onClick;
     return button;
 }
 
@@ -60,15 +61,19 @@ bool isClick(Button *button)
 
 void UpdateButton(App *app, Button *button)
 {
-
     if (isHover(button)) {
         LoadImage(app, button->imgOnHover);
     } else {
         LoadImage(app, button->img);
     }
+}
 
+void DoButton(Button *button)
+{
     if (isClick(button)) {
-        button->onClick();
+        if (button->onClick != NULL) {
+            button->onClick();
+        }
     }
 }
 
