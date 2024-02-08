@@ -1,7 +1,5 @@
 #include <pages/startPage.h>
 
-extern const ObjectStyle window;
-
 StartPage *InitStartPage()
 {
     StartPage *startpage = malloc(sizeof(StartPage));
@@ -18,7 +16,7 @@ StartPage *InitStartPage()
 void DrawStartPage(App *app)
 {
     app->curScene = StartScene;
-    changeBgColor(app->renderer, window.color);
+    changeBgColor(app, app->bgColor);
     LoadImage(app, app->startpage->startPageTitle);
     LoadButton(app, app->startpage->startGame);
     LoadButton(app, app->startpage->godMode);

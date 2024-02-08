@@ -25,7 +25,7 @@ void LoadImage(App *app, Image *img)
         printf("Load %s : %s\n", img->name, SDL_GetError());
         exit(EXIT_FAILURE);
     }
-    SDL_Surface *dest = SDL_CreateRGBSurface(0, 800, 600, 32, 0xFF000000, 0x00FF0000, 0x0000FF00, 0x000000FF);
+    SDL_Surface *dest = SDL_CreateRGBSurface(0, SCREEN_WIDTH, SCREEN_HEIGHT, 32, 0xFF000000, 0x00FF0000, 0x0000FF00, 0x000000FF);
     SDL_Rect *rect = malloc(sizeof(SDL_Rect));
     rect->x = img->x;
     rect->y = img->y;

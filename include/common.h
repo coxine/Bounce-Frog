@@ -14,6 +14,7 @@
 #include <utils/types.h>
 
 #include <utils/button.h>
+#include <utils/font.h>
 #include <utils/image.h>
 #include <utils/quit.h>
 #include <utils/sound.h>
@@ -25,6 +26,7 @@
 #include <pages/startPage.h>
 
 #include <event.h>
+#include <main.h>
 
 extern App app;
 

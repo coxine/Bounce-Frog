@@ -3,5 +3,5 @@
 
 #include <common.h>
 
-void changeBgColor(SDL_Renderer *renderer, Color color);
+void changeBgColor(App *app, SDL_Color bgColor);
 #endif

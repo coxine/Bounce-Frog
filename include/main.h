@@ -13,9 +13,7 @@
 // 解绑
 #undef main
 
-extern const ObjectStyle window;
-
-static void InitApp();
-static void StartUp();
+void InitApp();
+void StartUp();
 
 #endif

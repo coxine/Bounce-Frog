@@ -13,17 +13,6 @@ enum scene {
 };
 
 typedef struct {
-    int r;
-    int g;
-    int b;
-    int a;
-} Color;
-
-typedef struct {
-    Color color;
-} ObjectStyle;
-
-typedef struct {
     int height;
     int width;
     int x;
@@ -44,6 +33,16 @@ typedef struct {
 } Button;
 
 typedef struct {
+    char *content;
+    TTF_Font *fontFamily;
+    SDL_Color fontColor;
+    int x;
+    int y;
+    int fontSize;
+    int fontStyle;
+} Text;
+
+typedef struct {
     Image *startPageTitle;
     Button *startGame;
     Button *godMode;
@@ -57,6 +56,8 @@ typedef struct {
 typedef struct {
     Button *home;
     Button *quit;
+    Text *curScore;
+    Text *MaxScore;
 } OverPage;
 
 typedef struct {
@@ -71,8 +72,12 @@ typedef struct {
     bool keyPress[SDL_NUM_SCANCODES];
     Uint32 keyTimestamp[SDL_NUM_SCANCODES][2];
 
+    TTF_Font *font;
+    SDL_Color fontColor;
+
     StartPage *startpage;
     QuitPage *quitpage;
     OverPage *overpage;
+    SDL_Color bgColor;
 } App;
 #endif

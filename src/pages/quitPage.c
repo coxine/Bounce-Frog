@@ -1,7 +1,5 @@
 #include <pages/quitPage.h>
 
-extern ObjectStyle window;
-
 QuitPage *InitQuitPage()
 {
     QuitPage *quitpage = malloc(sizeof(QuitPage));
@@ -29,7 +27,7 @@ void qpQuitOnClick()
 void DrawQuitPage(App *app)
 {
     app->curScene = QuitScene;
-    changeBgColor(app->renderer, window.color);
+    changeBgColor(app, app->bgColor);
     LoadButton(app, app->quitpage->kontinue);
     LoadButton(app, app->quitpage->quit);
 }

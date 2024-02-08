@@ -37,7 +37,6 @@ void DoEvent(App *app)
 
 void StartSceneEvent(App *app)
 {
-    SDL_Scancode scanCode = (*(app->event)).key.keysym.scancode;
     switch ((*(app->event)).type) {
     case SDL_QUIT:
         DrawQuitPage(app);
