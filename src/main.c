@@ -47,4 +47,5 @@ static void StartUp()
     // scene
     app.startpage = InitStartPage();
     app.quitpage = InitQuitPage();
+    app.overpage = InitOverPage();
 }

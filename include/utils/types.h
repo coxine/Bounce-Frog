@@ -55,6 +55,11 @@ typedef struct {
 } QuitPage;
 
 typedef struct {
+    Button *home;
+    Button *quit;
+} OverPage;
+
+typedef struct {
     SDL_Window *window;
     SDL_Renderer *renderer;
     SDL_Surface *windowIcon;
@@ -64,5 +69,6 @@ typedef struct {
     SDL_Event *event;
     StartPage *startpage;
     QuitPage *quitpage;
+    OverPage *overpage;
 } App;
 #endif

@@ -19,6 +19,8 @@
 #include <utils/sound.h>
 #include <utils/style.h>
 
+#include <pages/gamePage.h>
+#include <pages/overPage.h>
 #include <pages/quitPage.h>
 #include <pages/startPage.h>
 

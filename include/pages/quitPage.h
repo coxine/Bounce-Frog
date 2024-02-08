@@ -21,7 +21,7 @@
 
 QuitPage *InitQuitPage();
 void DrawQuitPage(App *app);
-void kontinueOnClick();
-void quitOnClick();
+void qpKontinueOnClick();
+void qpQuitOnClick();
 
 #endif

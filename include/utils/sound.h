@@ -9,6 +9,7 @@
 
 #define WAITING_TIME 100
 
+#define CHUNK_BEST "../static/audio/Best.mp3"
 #define CHUNK_GOOD "../static/audio/Good.mp3"
 
 void PlayChunk(char *address);

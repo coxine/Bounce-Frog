@@ -18,7 +18,9 @@ void DoEvent(App *app)
             case StartScene:
                 StartSceneEvent(app);
                 break;
-
+            case OverScene:
+                OverSceneEvent(app);
+                break;
             case QuitScene:
                 QuitSceneEvent(app);
                 break;
@@ -42,13 +44,32 @@ void StartSceneEvent(App *app)
         break;
     case SDL_MOUSEBUTTONDOWN:
         if (isClick(app->startpage->startGame)) {
-            puts("111");
+            DrawOverPage(app);
             return;
         }
         if (isClick(app->startpage->godMode)) {
             puts("222");
             return;
         }
+        break;
+    default:
+        break;
+    }
+}
+
+void OverSceneEvent(App *app)
+{
+    switch ((*(app->event)).type) {
+    case SDL_QUIT:
+        DrawQuitPage(app);
+        break;
+    case SDL_MOUSEMOTION:
+        UpdateButton(app, app->overpage->home);
+        UpdateButton(app, app->overpage->quit);
+        break;
+    case SDL_MOUSEBUTTONDOWN:
+        DoButton(app->overpage->home);
+        DoButton(app->overpage->quit);
         break;
     default:
         break;
