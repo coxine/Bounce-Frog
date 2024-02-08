@@ -16,6 +16,7 @@
 #include <utils/button.h>
 #include <utils/image.h>
 #include <utils/quit.h>
+#include <utils/sound.h>
 #include <utils/style.h>
 
 #include <pages/quitPage.h>

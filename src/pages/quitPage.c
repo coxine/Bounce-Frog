@@ -16,11 +16,13 @@ QuitPage *InitQuitPage()
 
 void kontinueOnClick()
 {
+    PlayChunk(CHUNK_GOOD);
     DrawStartPage(&app);
 }
 
 void quitOnClick()
 {
+    PlayChunk(CHUNK_GOOD);
     DestroyWindow(&app);
     exit(EXIT_SUCCESS);
 }

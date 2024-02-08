@@ -60,6 +60,7 @@ typedef struct {
     SDL_Surface *windowIcon;
     enum scene curScene;
     int maxScore;
+    int curScore;
     SDL_Event *event;
     StartPage *startpage;
     QuitPage *quitpage;
