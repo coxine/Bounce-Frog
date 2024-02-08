@@ -1,13 +1,13 @@
 #ifndef INCLUDE_UTILS_QUIT_H_
 #define INCLUDE_UTILS_QUIT_H_
 
-#define QP_CONTINUE_HEIGHT 150
-#define QP_CONTINUE_WIDTH 300
-#define QP_CONTINUE_X 290
-#define QP_CONTINUE_Y 300
-#define QP_CONTINUE_IMG "../static/img/Continue.svg"
-#define QP_CONTINUE_IMG_ON_HOV "../static/img/Continue_hov.svg"
-#define QP_CONTINUE_NAME "Continue"
+#define QP_KONTINUE_HEIGHT 150
+#define QP_KONTINUE_WIDTH 300
+#define QP_KONTINUE_X 290
+#define QP_KONTINUE_Y 300
+#define QP_KONTINUE_IMG "../static/img/Kontinue.svg"
+#define QP_KONTINUE_IMG_ON_HOV "../static/img/Kontinue_hov.svg"
+#define QP_KONTINUE_NAME "Kontinue"
 
 #define QP_QUIT_HEIGHT 150
 #define QP_QUIT_WIDTH 300
