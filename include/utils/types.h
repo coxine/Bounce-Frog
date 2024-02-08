@@ -66,7 +66,11 @@ typedef struct {
     enum scene curScene;
     int maxScore;
     int curScore;
+
     SDL_Event *event;
+    bool keyPress[SDL_NUM_SCANCODES];
+    Uint32 keyTimestamp[SDL_NUM_SCANCODES][2];
+
     StartPage *startpage;
     QuitPage *quitpage;
     OverPage *overpage;

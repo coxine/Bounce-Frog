@@ -39,6 +39,8 @@ static void StartUp()
     app.renderer = SDL_CreateRenderer(app.window, -1, SDL_RENDERER_ACCELERATED);
     app.windowIcon = IMG_Load("../static/img/Icon.png");
     app.maxScore = 0;
+    app.curScene = 0;
+
     if (app.windowIcon == NULL) {
         HANDLE_ERROR("Load Icon");
     };

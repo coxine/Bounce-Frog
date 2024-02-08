@@ -52,6 +52,19 @@ void StartSceneEvent(App *app)
             return;
         }
         break;
+    case SDL_KEYDOWN:
+        if (!app->keyPress[(*(app->event)).key.keysym.scancode]) {
+            app->keyTimestamp[(*(app->event)).key.keysym.scancode][0] = (*(app->event)).key.timestamp;
+            app->keyPress[(*(app->event)).key.keysym.scancode] = true;
+            printf("%ums\n", (*(app->event)).key.timestamp);
+        }
+        break;
+    case SDL_KEYUP:
+        app->keyTimestamp[(*(app->event)).key.keysym.scancode][1] = (*(app->event)).key.timestamp;
+        app->keyPress[(*(app->event)).key.keysym.scancode] = false;
+        printf("%ums\n", (*(app->event)).key.timestamp);
+        printf("%ums\n", app->keyTimestamp[(*(app->event)).key.keysym.scancode][1] - app->keyTimestamp[(*(app->event)).key.keysym.scancode][0]);
+        break;
     default:
         break;
     }

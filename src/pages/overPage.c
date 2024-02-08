@@ -18,6 +18,7 @@ void DrawOverPage(App *app)
 {
     app->curScene = OverScene;
     changeBgColor(app->renderer, window.color);
+    // TODO : CurScore MaxScore
     LoadButton(app, app->overpage->home);
     LoadButton(app, app->overpage->quit);
 }
