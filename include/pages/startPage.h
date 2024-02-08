@@ -1,5 +1,5 @@
-#ifndef INCLUDE_STARTPAGE_H_
-#define INCLUDE_STARTPAGE_H_
+#ifndef INCLUDE_PAGES_STARTPAGE_H_
+#define INCLUDE_PAGES_STARTPAGE_H_
 
 #define SP_TITLE_FILE "../static/img/Title.svg"
 #define SP_TITLE_HEIGHT 200
@@ -28,4 +28,5 @@
 
 StartPage *InitStartPage();
 void DrawStartPage(App *app);
+
 #endif

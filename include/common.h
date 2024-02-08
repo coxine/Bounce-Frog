@@ -18,8 +18,10 @@
 #include <utils/quit.h>
 #include <utils/style.h>
 
+#include <pages/quitPage.h>
+#include <pages/startPage.h>
+
 #include <event.h>
-#include <startPage.h>
 
 extern App app;
 

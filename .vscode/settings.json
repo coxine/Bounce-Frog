@@ -3,6 +3,6 @@
         "${workspaceRoot}/include"
     ],
     "code-runner.executorMap": {
-        "c": "cd $dir && gcc src/main.c src/common.c src/startPage.c src/utils/button.c src/utils/image.c src/utils/quit.c src/utils/style.c -Wall -Werror -Wextra -ID:/SDL/include -I./include -LD:/SDL/lib -lmingw32 -lSDL2main -lSDL2 -lSDL2_image -lSDL2_mixer -lSDL2_ttf -o $fileNameWithoutExt && $dir$fileNameWithoutExt",
+        "c": "cd $dir && gcc src/main.c src/common.c src/pages/startPage.c src/utils/button.c src/utils/image.c src/utils/quit.c src/utils/style.c -Wall -Werror -Wextra -ID:/SDL/include -I./include -LD:/SDL/lib -lmingw32 -lSDL2main -lSDL2 -lSDL2_image -lSDL2_mixer -lSDL2_ttf -o $fileNameWithoutExt && $dir$fileNameWithoutExt",
     }
 }

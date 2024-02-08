@@ -1,4 +1,4 @@
-#include <startPage.h>
+#include <pages/startPage.h>
 
 extern const ObjectStyle window;
 
