@@ -18,6 +18,22 @@ bool isCollide(Obj *a, Obj *b)
     }
 }
 
+bool isCenter(Obj *a, Obj *b)
+{
+    int aCenterX = a->image->x + a->image->width / 2;
+    int aCenterY = a->image->y + a->image->height / 2;
+
+    int bCenterX = b->image->x + b->image->width / 2;
+    int bCenterY = b->image->y + b->image->height / 2;
+
+    // 判断两个物体的中心横纵坐标是否相差在10以内
+    if (abs(aCenterX - bCenterX) <= 20 && abs(aCenterY - bCenterY) <= 20) {
+        return true;
+    } else {
+        return false;
+    }
+}
+
 void LoadObject(App *app, Obj *a)
 {
     UpdateImage(a->image, a->image->file, a->image->height, a->image->width, a->image->name, a->image->x, a->image->y);
@@ -59,6 +75,5 @@ void Move(App *app, Obj *a, Speed InitX, Speed InitY, Speed dx, Speed dy, int ti
         vx += dx;
         vy += dy;
         SDL_Delay(delay);
-        printf("%s\n", SDL_GetError());
     }
 }

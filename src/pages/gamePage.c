@@ -30,17 +30,21 @@ void DrawGamePage(App *app)
     app->curScene = GameScene;
 
     ChangeBgColor(app, app->bgColor);
-    sprintf(app->gamepage->curScoreStr, "Score: %d", app->curScore);
-    sprintf(app->gamepage->maxScoreStr, "MaxScore: %d", app->maxScore);
-    Write(app, app->gamepage->curScore, app->gamepage->curScoreStr);
-    Write(app, app->gamepage->maxScore, app->gamepage->maxScoreStr);
 
     for (int i = 1; i <= 3; i++) {
         InitFlorr(i);
         LoadObject(app, &(app->gamepage->florr[i]));
     }
-
+    sprintf(app->gamepage->maxScoreStr, "Max Score: %d", app->maxScore);
+    DrawScore(app);
     LoadObject(app, &(app->gamepage->frog));
+}
+
+void DrawScore(App *app)
+{
+    sprintf(app->gamepage->curScoreStr, "Score: %d", app->curScore);
+    WriteText(app, app->gamepage->curScore, app->gamepage->curScoreStr);
+    WriteText(app, app->gamepage->maxScore, app->gamepage->maxScoreStr);
 }
 
 void InitNewGame(App *app)
@@ -60,14 +64,14 @@ void InitNewGame(App *app)
 
 void InitFlorr(int florrID)
 {
+    app.gamepage->maxFlorr++;
     if (florrID == 1) {
         app.gamepage->florr[florrID].image = InitImage(GP_FLOWER_IMG, GP_IMG_HEIGHT, GP_IMG_WIDTH, "Flower", GP_IMG_X_FIRST, GP_IMG_Y_FIRST);
         return;
     }
 
     int florrpic = RanInt(1, 1000);
-    int distance = RanInt(10, 20) * 10;
-    app.gamepage->maxFlorr++;
+    int distance = RanInt(15, 30) * 10;
     switch (florrpic % 2) {
     case 1:
         app.gamepage->florr[florrID].image = InitImage(GP_FLOWER_IMG, GP_IMG_HEIGHT, GP_IMG_WIDTH, "Flower", (app.gamepage->florr[florrID - 1].image->x + distance * 2), (app.gamepage->florr[florrID - 1].image->y - distance));
@@ -80,24 +84,41 @@ void InitFlorr(int florrID)
 
 void MoveFlorrAndFrog(App *app, int frogHopTime, int minFlorr, int maxFlorr)
 {
-
+    int min = minFlorr;
+    app->gamepage->frog.image->y = 360;
     double vFrogY = floor(-0.5 * frogHopTime / 32);
     double vFrogDY = FROG_HOP_DY;
     double times = 4 * fabs(vFrogY) + 1;
     for (int i = 0; i < times; i++) {
         LoadBgColor(app, app->bgColor);
-        for (int j = minFlorr; j <= maxFlorr; j++) {
+        for (int j = min; j <= maxFlorr; j++) {
             Move(app, &(app->gamepage->florr[j]), GP_FLORR_SPEED_X, GP_FLORR_SPEED_Y, 0, 0, 1, 0);
         }
 
-        // move frog (only Y)
         Move(app, &(app->gamepage->frog), 0, vFrogY, 0, vFrogDY, 1, 0);
         vFrogY += vFrogDY;
         SDL_RenderPresent(app->renderer);
+        DrawScore(app);
     }
 }
 
-void DestroyFlorr(App *app, int florrID)
+bool CheckObjInWindow(Obj *obj)
 {
-    app->gamepage->curFlorr = florrID + 1;
+    if (obj == NULL || obj->image == NULL) {
+        return false;
+    }
+    int left = obj->image->x;
+    int top = obj->image->y;
+    int right = left + obj->image->width;
+    int bottom = top + obj->image->height;
+    if (right < 0 || bottom < 0 || left > SCREEN_WIDTH || top > SCREEN_HEIGHT) {
+        return false;
+    }
+
+    return true;
+}
+
+void DestroyFlorr(App *app)
+{
+    app->gamepage->minFlorr++;
 }

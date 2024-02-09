@@ -30,14 +30,15 @@
 #define GP_IMG_WIDTH 200
 #define GP_IMG_X_FIRST 540
 #define GP_IMG_Y_FIRST 350
-#define GP_FLORR_SPEED_X -10
-#define GP_FLORR_SPEED_Y 5
+#define GP_FLORR_SPEED_X -16
+#define GP_FLORR_SPEED_Y 8
 
 GamePage *InitGamePage();
 void DrawGamePage(App *app);
 void InitNewGame(App *app);
-
+void DrawScore(App *app);
 void InitFlorr(int florrID);
+bool CheckObjInWindow(Obj *obj);
 void MoveFlorrAndFrog(App *app, int frogHopTime, int minFlorr, int maxFlorr);
-void DestroyFlorr(App *app, int florrID);
+void DestroyFlorr(App *app);
 #endif

@@ -4,6 +4,7 @@
 #include <common.h>
 
 bool isCollide(Obj *a, Obj *b);
+bool isCenter(Obj *a, Obj *b);
 void LoadObject(App *app, Obj *a);
 void ResumeBgColor(App *app, const Obj *a, SDL_Color bgColor);
 void Move(App *app, Obj *a, Speed InitX, Speed InitY, Speed dx, Speed dy, int times, int delay);

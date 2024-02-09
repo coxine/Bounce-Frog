@@ -23,10 +23,13 @@ void DrawOverPage(App *app)
     app->curScene = OverScene;
 
     ChangeBgColor(app, app->bgColor);
+    if (app->curScore > app->maxScore) {
+        app->maxScore = app->curScore;
+    }
     sprintf(app->overpage->curScoreStr, "Score: %d", app->curScore);
     sprintf(app->overpage->maxScoreStr, "MaxScore: %d", app->maxScore);
-    Write(app, app->overpage->curScore, app->overpage->curScoreStr);
-    Write(app, app->overpage->maxScore, app->overpage->maxScoreStr);
+    WriteText(app, app->overpage->curScore, app->overpage->curScoreStr);
+    WriteText(app, app->overpage->maxScore, app->overpage->maxScoreStr);
     LoadButton(app, app->overpage->home);
     LoadButton(app, app->overpage->quit);
 }

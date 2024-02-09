@@ -62,33 +62,53 @@ void StartSceneEvent(App *app)
 
 void GameSceneEvent(App *app)
 {
-    SDL_Scancode scanCode = (*(app->event)).key.keysym.scancode;
-    switch ((*(app->event)).type) {
-    case SDL_QUIT:
-        DrawQuitPage(app);
-        break;
-    case SDL_KEYDOWN:
-        if ((*(app->event)).key.keysym.scancode == SDL_SCANCODE_ESCAPE) {
+    if (app->gamepage->isGodMode) {
+        switch ((*(app->event)).type) {
+        case SDL_QUIT:
             DrawQuitPage(app);
+            break;
+        default:
+            break;
         }
-        if (!app->keyPress[scanCode]) {
-            app->keyTimestamp[scanCode][0] = (*(app->event)).key.timestamp;
-            app->keyPress[scanCode] = true;
+    } else {
+        SDL_Scancode scanCode = (*(app->event)).key.keysym.scancode;
+        switch ((*(app->event)).type) {
+        case SDL_QUIT:
+            DrawQuitPage(app);
+            break;
+        case SDL_KEYDOWN:
+            SDL_RenderPresent(app->renderer);
+            if ((*(app->event)).key.keysym.scancode == SDL_SCANCODE_ESCAPE) {
+                DrawQuitPage(app);
+            }
+            if (!app->keyPress[scanCode]) {
+                app->keyTimestamp[scanCode][0] = (*(app->event)).key.timestamp;
+                app->keyPress[scanCode] = true;
+            }
+            break;
+        case SDL_KEYUP:
+            if (scanCode == SDL_SCANCODE_SPACE) {
+                app->keyTimestamp[scanCode][1] = (*(app->event)).key.timestamp;
+                app->keyPress[scanCode] = false;
+                Uint32 frogHopTime = GetFrogHopTimeFromSpace(app);
+                MoveFlorrAndFrog(app, frogHopTime, fmin(1, app->gamepage->maxFlorr - 3), app->gamepage->maxFlorr);
+                app->gamepage->curFlorr++;
+                InitFlorr(app->gamepage->maxFlorr);
+                if (isCollide(&(app->gamepage->frog), &(app->gamepage->florr[app->gamepage->curFlorr]))) {
+                    if (isCenter(&(app->gamepage->frog), &(app->gamepage->florr[app->gamepage->curFlorr]))) {
+                        app->curScore += 4;
+                    } else {
+                        app->curScore += 2;
+                    }
+                    DrawScore(app);
+                } else {
+                    DrawOverPage(app);
+                }
+                break;
+            }
+        default:
+            break;
         }
-        break;
-    case SDL_KEYUP:
-        if (scanCode == SDL_SCANCODE_SPACE) {
-            app->keyTimestamp[scanCode][1] = (*(app->event)).key.timestamp;
-            app->keyPress[scanCode] = false;
-            Uint32 frogHopTime = GetFrogHopTimeFromSpace(app);
-            // Move(app, &(app->gamepage->frog), 0, -0.5 * frogHopTime / 32, 0, FROG_HOP_DY, 2 * frogHopTime / 32 + 1, 20);
-            MoveFlorrAndFrog(app, frogHopTime, app->gamepage->minFlorr, app->gamepage->maxFlorr);
-        }
-        break;
-
-        break;
-    default:
-        break;
     }
 }
 

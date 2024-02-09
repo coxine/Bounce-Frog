@@ -13,7 +13,7 @@ Text *InitText(TTF_Font *fontFamily, SDL_Color fontColor, int x, int y, int font
     return text;
 }
 
-void Write(App *app, Text *text, char *content)
+void LoadText(App *app, Text *text, char *content)
 {
     text->content = malloc(strlen(content) + 1);
     strcpy(text->content, content);
@@ -28,11 +28,19 @@ void Write(App *app, Text *text, char *content)
     // Render it
     SDL_Texture *textTexture = SDL_CreateTextureFromSurface(app->renderer, textSurface);
     SDL_QueryTexture(textTexture, NULL, NULL, &(textRect->w), &(textRect->h));
+    text->width = textRect->w;
+    text->height = textRect->h;
     SDL_RenderCopy(app->renderer, textTexture, NULL, textRect);
-    SDL_RenderPresent(app->renderer);
 
     // Kill what you've created
     SDL_FreeSurface(textSurface);
     SDL_DestroyTexture(textTexture);
     free(textRect);
+}
+
+void WriteText(App *app, Text *text, char *content)
+{
+    FillRect(app->bgColor, text->x, text->y, text->width, text->height);
+    LoadText(app, text, content);
+    SDL_RenderPresent(app->renderer);
 }

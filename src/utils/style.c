@@ -20,3 +20,16 @@ void ChangeBgColor(App *app, SDL_Color bgColor)
     LoadBgColor(app, bgColor);
     SDL_RenderPresent(app->renderer);
 }
+
+void FillRect(SDL_Color bgColor, int x, int y, int width, int height)
+{
+    SDL_Rect rect;
+    rect.x = x;
+    rect.y = y;
+    rect.w = width;
+    rect.h = height;
+
+    SDL_Renderer *renderer = app.renderer;
+    SDL_SetRenderDrawColor(renderer, bgColor.r, bgColor.g, bgColor.b, bgColor.a);
+    SDL_RenderFillRect(renderer, &rect);
+}
