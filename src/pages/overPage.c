@@ -33,12 +33,13 @@ void DrawOverPage(App *app)
 
 void opHomeOnClick()
 {
+    PlayChunk(CHUNK_IMPROVE_LEVEL);
     DrawStartPage(&app);
 }
 
 void opQuitOnClick()
 {
-    PlayChunk(CHUNK_GOOD);
+    PlayChunk(CHUNK_NAIVE);
     DestroyWindow(&app);
     exit(EXIT_SUCCESS);
 }
