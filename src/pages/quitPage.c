@@ -46,6 +46,7 @@ void qpQuitOnClick()
 }
 void qpStartOnClick()
 {
+    PlayChunk(CHUNK_EXCITED);
     app.gamepage->isGodMode = 0;
     InitNewGame(&app);
 }
