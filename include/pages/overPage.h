@@ -19,6 +19,18 @@
 #define OP_QUIT_IMG_ON_HOV "../static/img/Quit_hov.svg"
 #define OP_QUIT_NAME "Quit"
 
+#define OP_CURSCORE_X 290
+#define OP_CURSCORE_Y 100
+#define OP_CURSCORE_FONTSIZE 80
+#define OP_CURSCORE_FONTSTYLE TTF_STYLE_NORMAL
+
+#define OP_MAXSCORE_X 290
+#define OP_MAXSCORE_Y 200
+#define OP_MAXSCORE_FONTSIZE 80
+#define OP_MAXSCORE_FONTSTYLE TTF_STYLE_NORMAL
+
+#define MAX_SCORE_STR_LEN 50
+
 OverPage *InitOverPage();
 void DrawOverPage(App *app);
 void opHomeOnClick();

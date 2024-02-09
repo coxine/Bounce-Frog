@@ -56,8 +56,10 @@ typedef struct {
 typedef struct {
     Button *home;
     Button *quit;
+    char *curScoreStr;
+    char *maxScoreStr;
     Text *curScore;
-    Text *MaxScore;
+    Text *maxScore;
 } OverPage;
 
 typedef struct {
