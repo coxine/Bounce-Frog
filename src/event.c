@@ -77,8 +77,27 @@ void GameSceneEvent(App *app)
         }
         break;
     case SDL_KEYUP:
-        app->keyTimestamp[scanCode][1] = (*(app->event)).key.timestamp;
-        app->keyPress[scanCode] = false;
+        if (scanCode == SDL_SCANCODE_SPACE) {
+            app->keyTimestamp[scanCode][1] = (*(app->event)).key.timestamp;
+            app->keyPress[scanCode] = false;
+            Uint32 frogHopTime = GetFrogHopTimeFromSpace(app);
+            Move(app, &(app->gamepage->frog), 0, -0.5 * frogHopTime / 32, 0, FROG_HOP_DY, 2 * frogHopTime / 32 + 1);
+        }
+        break;
+    case SDL_MOUSEBUTTONDOWN:
+        if (((*(app->event)).button.button == SDL_BUTTON_LEFT) && !app->mousePress) {
+            app->mouseTimestamp[0] = (*(app->event)).button.timestamp;
+            app->mousePress = true;
+        }
+        break;
+    case SDL_MOUSEBUTTONUP:
+        if ((*(app->event)).button.button == SDL_BUTTON_LEFT) {
+            app->mouseTimestamp[1] = (*(app->event)).button.timestamp;
+            app->mousePress = false;
+            Uint32 frogHopTime = GetFrogHopTimeFromMouse(app);
+            Move(app, &(app->gamepage->frog), 0, -0.5 * frogHopTime / 32, 0, FROG_HOP_DY, 2 * frogHopTime / 32 + 1);
+        }
+
         break;
     default:
         break;
@@ -138,4 +157,33 @@ Uint32 GetKeyPressTime(App *app, SDL_Scancode scancode)
     } else {
         return 0;
     }
+}
+
+Uint32 GetFrogHopTimeFromSpace(App *app)
+{
+    if (GetKeyPressTime(app, SDL_SCANCODE_SPACE) > MAX_HOP_TIME) {
+        return MAX_HOP_TIME;
+    }
+
+    return GetKeyPressTime(app, SDL_SCANCODE_SPACE);
+}
+
+Uint32 GetMousePressTime(App *app)
+{
+    Uint32 press_time = app->mouseTimestamp[0];
+    Uint32 release_time = app->mouseTimestamp[1];
+    if (press_time > 0 && release_time >= press_time) {
+        return release_time - press_time;
+    } else {
+        return 0;
+    }
+}
+
+Uint32 GetFrogHopTimeFromMouse(App *app)
+{
+    if (GetMousePressTime(app) > MAX_HOP_TIME) {
+        return MAX_HOP_TIME;
+    }
+
+    return GetMousePressTime(app);
 }

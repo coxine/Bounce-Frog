@@ -10,12 +10,14 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <time.h>
 
 #include <utils/types.h>
 
 #include <utils/button.h>
 #include <utils/font.h>
 #include <utils/image.h>
+#include <utils/object.h>
 #include <utils/quit.h>
 #include <utils/sound.h>
 #include <utils/style.h>
@@ -33,5 +35,7 @@ extern App app;
 #define HANDLE_ERROR(msg)                 \
     printf(msg ": %s\n", SDL_GetError()); \
     exit(EXIT_FAILURE);
+
+int RanInt(int min, int max);
 
 #endif

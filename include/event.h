@@ -10,5 +10,8 @@ void GameSceneEvent(App *app);
 void OverSceneEvent(App *app);
 void QuitSceneEvent(App *app);
 Uint32 GetKeyPressTime(App *app, SDL_Scancode scancode);
+Uint32 GetFrogHopTimeFromSpace(App *app);
+Uint32 GetFrogHopTimeFromSpace(App *app);
+Uint32 GetFrogHopTimeFromMouse(App *app);
 
 #endif

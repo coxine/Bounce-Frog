@@ -100,7 +100,9 @@ typedef struct {
 
     SDL_Event *event;
     bool keyPress[SDL_NUM_SCANCODES];
+    bool mousePress;
     Uint32 keyTimestamp[SDL_NUM_SCANCODES][2];
+    Uint32 mouseTimestamp[2];
 
     TTF_Font *font;
     SDL_Color fontColor;

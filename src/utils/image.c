@@ -17,6 +17,7 @@ Image *InitImage(char *file, int height, int width, char *name, int x, int y)
     return img;
 }
 
+// 更新图片长宽位置
 void UpdateImage(Image *img, char *file, int height, int width, char *name, int x, int y)
 {
     img->height = height;
@@ -29,6 +30,7 @@ void UpdateImage(Image *img, char *file, int height, int width, char *name, int 
     strcpy(img->name, name);
 }
 
+// 将图片输出到屏幕
 void LoadImage(App *app, Image *img)
 {
     // Create Surface & Rect

@@ -34,6 +34,8 @@ void DrawGamePage(App *app)
     sprintf(app->gamepage->maxScoreStr, "MaxScore: %d", app->maxScore);
     Write(app, app->gamepage->curScore, app->gamepage->curScoreStr);
     Write(app, app->gamepage->maxScore, app->gamepage->maxScoreStr);
+
+    LoadObject(app, &(app->gamepage->frog));
 }
 
 void InitNewGame(App *app)
@@ -50,7 +52,3 @@ void InitNewGame(App *app)
     app->curScore = 0;
     DrawGamePage(app);
 }
-
-// bool isFrogOnFlorr(Obj frog, int florrID)
-// {
-// }
