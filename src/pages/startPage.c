@@ -16,8 +16,8 @@ StartPage *InitStartPage()
 void DrawStartPage(App *app)
 {
     app->curScene = StartScene;
-    changeBgColor(app, app->bgColor);
-    LoadImage(app, app->startpage->startPageTitle);
+    ChangeBgColor(app, app->bgColor);
+    DrawImage(app, app->startpage->startPageTitle);
     LoadButton(app, app->startpage->startGame);
     LoadButton(app, app->startpage->godMode);
 }

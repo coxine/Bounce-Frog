@@ -30,7 +30,6 @@ void UpdateImage(Image *img, char *file, int height, int width, char *name, int 
     strcpy(img->name, name);
 }
 
-// 将图片输出到屏幕
 void LoadImage(App *app, Image *img)
 {
     // Create Surface & Rect
@@ -50,13 +49,18 @@ void LoadImage(App *app, Image *img)
     SDL_BlitScaled(src, NULL, dest, NULL);
     SDL_Texture *texture = SDL_CreateTextureFromSurface(app->renderer, dest);
     SDL_RenderCopy(app->renderer, texture, NULL, rect);
-    SDL_RenderPresent(app->renderer);
 
     // Kill what you've created
     SDL_FreeSurface(dest);
     SDL_FreeSurface(src);
     SDL_DestroyTexture(texture);
     free(rect);
+}
+// 将图片输出到屏幕
+void DrawImage(App *app, Image *img)
+{
+    LoadImage(app, img);
+    SDL_RenderPresent(app->renderer);
 }
 
 void DestroyImage(Image *img)

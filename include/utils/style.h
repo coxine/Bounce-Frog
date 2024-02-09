@@ -3,5 +3,6 @@
 
 #include <common.h>
 
-void changeBgColor(App *app, SDL_Color bgColor);
+void LoadBgColor(App *app, SDL_Color bgColor);
+void ChangeBgColor(App *app, SDL_Color bgColor);
 #endif

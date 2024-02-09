@@ -34,7 +34,7 @@ void LoadButton(App *app, Button *button)
     button->imgOnHover->width = button->width;
     button->imgOnHover->x = button->x;
     button->imgOnHover->y = button->y;
-    LoadImage(app, button->img);
+    DrawImage(app, button->img);
 }
 
 bool isHover(Button *button)
@@ -62,9 +62,9 @@ bool isClick(Button *button)
 void UpdateButton(App *app, Button *button)
 {
     if (isHover(button)) {
-        LoadImage(app, button->imgOnHover);
+        DrawImage(app, button->imgOnHover);
     } else {
-        LoadImage(app, button->img);
+        DrawImage(app, button->img);
     }
 }
 

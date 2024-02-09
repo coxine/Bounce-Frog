@@ -22,7 +22,7 @@ void DrawOverPage(App *app)
 {
     app->curScene = OverScene;
 
-    changeBgColor(app, app->bgColor);
+    ChangeBgColor(app, app->bgColor);
     sprintf(app->overpage->curScoreStr, "Score: %d", app->curScore);
     sprintf(app->overpage->maxScoreStr, "MaxScore: %d", app->maxScore);
     Write(app, app->overpage->curScore, app->overpage->curScoreStr);

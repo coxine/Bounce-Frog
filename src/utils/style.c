@@ -1,6 +1,6 @@
 #include <utils/style.h>
 
-void changeBgColor(App *app, SDL_Color bgColor)
+void LoadBgColor(App *app, SDL_Color bgColor)
 {
     int r = bgColor.r;
     int g = bgColor.g;
@@ -13,5 +13,10 @@ void changeBgColor(App *app, SDL_Color bgColor)
     }
     SDL_SetRenderDrawColor(app->renderer, r, g, b, a);
     SDL_RenderClear(app->renderer);
+}
+
+void ChangeBgColor(App *app, SDL_Color bgColor)
+{
+    LoadBgColor(app, bgColor);
     SDL_RenderPresent(app->renderer);
 }

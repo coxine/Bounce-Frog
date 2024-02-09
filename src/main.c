@@ -37,7 +37,6 @@ void StartUp()
     app.renderer = SDL_CreateRenderer(app.window, -1, SDL_RENDERER_ACCELERATED);
     app.windowIcon = IMG_Load("../static/img/Icon.png");
     app.font = TTF_OpenFont("../static/font/SSLBST.ttf", 64);
-
     app.maxScore = 0;
     app.curScene = 0;
 

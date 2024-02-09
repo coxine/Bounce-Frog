@@ -21,6 +21,7 @@ typedef struct {
     int y;
     char *name;
     char *file;
+    SDL_Surface *surface;
 } Image;
 
 typedef struct {
@@ -93,6 +94,7 @@ typedef struct {
 typedef struct {
     SDL_Window *window;
     SDL_Renderer *renderer;
+    SDL_Surface *windowSurface;
     SDL_Surface *windowIcon;
     enum scene curScene;
     int maxScore;

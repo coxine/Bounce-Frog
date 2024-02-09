@@ -54,7 +54,7 @@ void DrawQuitPage(App *app)
 {
     app->quitpage->lastScene = app->curScene;
     app->curScene = QuitScene;
-    changeBgColor(app, app->bgColor);
+    ChangeBgColor(app, app->bgColor);
     LoadButton(app, app->quitpage->kontinue);
     LoadButton(app, app->quitpage->quit);
     LoadButton(app, app->quitpage->home);

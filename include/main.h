@@ -10,9 +10,6 @@
 
 #define MAX_SCORE_STR_LEN 50
 
-#define FROG_HOP_DY 0.5
-#define MAX_HOP_TIME 1056
-
 #include <common.h>
 
 // 解绑

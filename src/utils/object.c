@@ -21,7 +21,7 @@ bool isCollide(Obj *a, Obj *b)
 void LoadObject(App *app, Obj *a)
 {
     UpdateImage(a->image, a->image->file, a->image->height, a->image->width, a->image->name, a->image->x, a->image->y);
-    LoadImage(app, a->image);
+    DrawImage(app, a->image);
 }
 
 void ResumeBgColor(App *app, const Obj *a, SDL_Color bgColor)
@@ -38,7 +38,7 @@ void ResumeBgColor(App *app, const Obj *a, SDL_Color bgColor)
     SDL_RenderFillRect(app->renderer, &rect);
 }
 
-void Move(App *app, Obj *a, Speed InitX, Speed InitY, Speed dx, Speed dy, int times)
+void Move(App *app, Obj *a, Speed InitX, Speed InitY, Speed dx, Speed dy, int times, int delay)
 {
     if (a == NULL || a->image == NULL || times <= 0)
         return;
@@ -47,17 +47,18 @@ void Move(App *app, Obj *a, Speed InitX, Speed InitY, Speed dx, Speed dy, int ti
     Speed vy = InitY;
 
     for (int i = 0; i < times; i++) {
-        ResumeBgColor(app, a, app->bgColor);
+        // ResumeBgColor(app, a, app->bgColor);
         int newX = a->image->x + (int)(vx);
         int newY = a->image->y + (int)(vy);
 
         a->image->x = newX;
         a->image->y = newY;
-        LoadObject(app, a);
+        LoadImage(app, a->image);
 
         // 更新速度
         vx += dx;
         vy += dy;
-        SDL_Delay(20);
+        SDL_Delay(delay);
+        printf("%s\n", SDL_GetError());
     }
 }
