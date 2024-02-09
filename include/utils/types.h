@@ -59,6 +59,9 @@ typedef struct {
 typedef struct {
     Button *kontinue;
     Button *quit;
+    Button *startGame;
+    Button *home;
+
     enum scene lastScene;
 } QuitPage;
 

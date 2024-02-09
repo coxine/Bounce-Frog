@@ -46,16 +46,8 @@ void StartSceneEvent(App *app)
         UpdateButton(app, app->startpage->godMode);
         break;
     case SDL_MOUSEBUTTONDOWN:
-        if (isClick(app->startpage->startGame)) {
-            app->gamepage->isGodMode = 0;
-            InitNewGame(app);
-            return;
-        }
-        if (isClick(app->startpage->godMode)) {
-            app->gamepage->isGodMode = 1;
-            InitNewGame(app);
-            return;
-        }
+        DoButton(app->startpage->godMode);
+        DoButton(app->startpage->startGame);
         break;
     case SDL_KEYDOWN:
         if ((*(app->event)).key.keysym.scancode == SDL_SCANCODE_ESCAPE) {
@@ -76,6 +68,9 @@ void GameSceneEvent(App *app)
         DrawQuitPage(app);
         break;
     case SDL_KEYDOWN:
+        if ((*(app->event)).key.keysym.scancode == SDL_SCANCODE_ESCAPE) {
+            DrawQuitPage(app);
+        }
         if (!app->keyPress[scanCode]) {
             app->keyTimestamp[scanCode][0] = (*(app->event)).key.timestamp;
             app->keyPress[scanCode] = true;
@@ -104,6 +99,11 @@ void OverSceneEvent(App *app)
         DoButton(app->overpage->home);
         DoButton(app->overpage->quit);
         break;
+    case SDL_KEYDOWN:
+        if ((*(app->event)).key.keysym.scancode == SDL_SCANCODE_ESCAPE) {
+            DrawQuitPage(app);
+        }
+        break;
     default:
         break;
     }
@@ -115,10 +115,14 @@ void QuitSceneEvent(App *app)
     case SDL_MOUSEMOTION:
         UpdateButton(app, app->quitpage->kontinue);
         UpdateButton(app, app->quitpage->quit);
+        UpdateButton(app, app->quitpage->home);
+        UpdateButton(app, app->quitpage->startGame);
         break;
     case SDL_MOUSEBUTTONDOWN:
         DoButton(app->quitpage->kontinue);
         DoButton(app->quitpage->quit);
+        DoButton(app->quitpage->home);
+        DoButton(app->quitpage->startGame);
         break;
     default:
         break;

@@ -13,6 +13,7 @@
 #define CHUNK_GOOD "../static/audio/Good.mp3"
 #define CHUNK_NAIVE "../static/audio/Naive.mp3"
 #define CHUNK_IMPROVE_LEVEL "../static/audio/ImproveLevel.mp3"
+#define CHUNK_EXCITED "../static/audio/Excited.mp3"
 
 void PlayChunk(char *address);
 Uint32 getChunkTimeMilliseconds(Mix_Chunk *chunk);
