@@ -63,9 +63,32 @@ void StartSceneEvent(App *app)
 void GameSceneEvent(App *app)
 {
     if (app->gamepage->isGodMode) {
+        SDL_Scancode scanCode = (*(app->event)).key.keysym.scancode;
         switch ((*(app->event)).type) {
         case SDL_QUIT:
             DrawQuitPage(app);
+            break;
+        case SDL_KEYDOWN:
+            if ((*(app->event)).key.keysym.scancode == SDL_SCANCODE_ESCAPE) {
+                DrawQuitPage(app);
+            }
+            if (!app->keyPress[scanCode]) {
+                app->keyTimestamp[scanCode][0] = (*(app->event)).key.timestamp;
+                app->keyPress[scanCode] = true;
+            }
+            break;
+        case SDL_KEYUP:
+            if (scanCode == SDL_SCANCODE_SPACE) {
+                app->keyTimestamp[scanCode][1] = (*(app->event)).key.timestamp;
+                app->keyPress[scanCode] = false;
+                Uint32 frogHopTime = GetFrogHopTimeFromDistance(app);
+                printf("%u\n", frogHopTime);
+                GodMoveFlorrAndFrog(app, frogHopTime, fmin(1, app->gamepage->maxFlorr - 2), app->gamepage->maxFlorr);
+                app->gamepage->curFlorr++;
+                InitFlorr(app->gamepage->maxFlorr);
+                app->curScore += 4;
+                DrawScore(app);
+            }
             break;
         default:
             break;
@@ -91,7 +114,7 @@ void GameSceneEvent(App *app)
                 app->keyTimestamp[scanCode][1] = (*(app->event)).key.timestamp;
                 app->keyPress[scanCode] = false;
                 Uint32 frogHopTime = GetFrogHopTimeFromSpace(app);
-                MoveFlorrAndFrog(app, frogHopTime, fmin(1, app->gamepage->maxFlorr - 3), app->gamepage->maxFlorr);
+                MoveFlorrAndFrog(app, frogHopTime, fmin(1, app->gamepage->maxFlorr - 2), app->gamepage->maxFlorr);
                 app->gamepage->curFlorr++;
                 InitFlorr(app->gamepage->maxFlorr);
                 if (isCollide(&(app->gamepage->frog), &(app->gamepage->florr[app->gamepage->curFlorr]))) {
@@ -174,4 +197,14 @@ Uint32 GetFrogHopTimeFromSpace(App *app)
     }
 
     return GetKeyPressTime(app, SDL_SCANCODE_SPACE);
+}
+
+Uint32 GetFrogHopTimeFromDistance(App *app)
+{
+    int cur = app->gamepage->curFlorr;
+    int next = cur + 1;
+    int distance = app->gamepage->florr[cur].image->y - app->gamepage->florr[next].image->y;
+    Uint32 time = distance / GP_FLORR_SPEED_Y;
+
+    return time;
 }

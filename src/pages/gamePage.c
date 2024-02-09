@@ -70,14 +70,15 @@ void InitFlorr(int florrID)
         return;
     }
 
+    double size = RanInt(8, 10) * 1.0 / 10;
     int florrpic = RanInt(1, 1000);
-    int distance = RanInt(15, 30) * 10;
+    int distance = RanInt(15, 25) * 10;
     switch (florrpic % 2) {
     case 1:
-        app.gamepage->florr[florrID].image = InitImage(GP_FLOWER_IMG, GP_IMG_HEIGHT, GP_IMG_WIDTH, "Flower", (app.gamepage->florr[florrID - 1].image->x + distance * 2), (app.gamepage->florr[florrID - 1].image->y - distance));
+        app.gamepage->florr[florrID].image = InitImage(GP_FLOWER_IMG, size * GP_IMG_HEIGHT, size * GP_IMG_WIDTH, "Flower", (app.gamepage->florr[florrID - 1].image->x + distance * 2), (app.gamepage->florr[florrID - 1].image->y - distance));
         break;
     case 0:
-        app.gamepage->florr[florrID].image = InitImage(GP_LEAF_IMG, GP_IMG_HEIGHT, GP_IMG_WIDTH, "Leaf", (app.gamepage->florr[florrID - 1].image->x + distance * 2), (app.gamepage->florr[florrID - 1].image->y - distance));
+        app.gamepage->florr[florrID].image = InitImage(GP_LEAF_IMG, size * GP_IMG_HEIGHT, size * GP_IMG_WIDTH, "Leaf", (app.gamepage->florr[florrID - 1].image->x + distance * 2), (app.gamepage->florr[florrID - 1].image->y - distance));
         break;
     }
 }
@@ -87,12 +88,13 @@ void MoveFlorrAndFrog(App *app, int frogHopTime, int minFlorr, int maxFlorr)
     int min = minFlorr;
     app->gamepage->frog.image->y = 360;
     double vFrogY = floor(-0.5 * frogHopTime / 32);
-    double vFrogDY = FROG_HOP_DY;
+    double vFrogDY = FROG_HOP_DY * 2;
     double times = 4 * fabs(vFrogY) + 1;
+    times /= 2;
     for (int i = 0; i < times; i++) {
         LoadBgColor(app, app->bgColor);
         for (int j = min; j <= maxFlorr; j++) {
-            Move(app, &(app->gamepage->florr[j]), GP_FLORR_SPEED_X, GP_FLORR_SPEED_Y, 0, 0, 1, 0);
+            Move(app, &(app->gamepage->florr[j]), GP_FLORR_SPEED_X * 2, GP_FLORR_SPEED_Y * 2, 0, 0, 1, 0);
         }
 
         Move(app, &(app->gamepage->frog), 0, vFrogY, 0, vFrogDY, 1, 0);
@@ -100,6 +102,28 @@ void MoveFlorrAndFrog(App *app, int frogHopTime, int minFlorr, int maxFlorr)
         SDL_RenderPresent(app->renderer);
         DrawScore(app);
     }
+}
+
+void GodMoveFlorrAndFrog(App *app, double frogHopTime, int minFlorr, int maxFlorr)
+{
+    double times = frogHopTime / 2;
+    Speed vFrogDY = FROG_HOP_DY * 2;
+    Speed vFrogY = -(vFrogDY * frogHopTime / 4);
+    for (int i = 0; i < times; i++) {
+
+        LoadBgColor(app, app->bgColor);
+        for (int j = minFlorr; j <= maxFlorr; j++) {
+            Move(app, &(app->gamepage->florr[j]), 2 * GP_FLORR_SPEED_X, 2 * GP_FLORR_SPEED_Y, 0, 0, 1, 0);
+        }
+
+        Move(app, &(app->gamepage->frog), 0, vFrogY, 0, vFrogDY, 1, 0);
+        vFrogY += vFrogDY;
+
+        SDL_RenderPresent(app->renderer);
+        DrawScore(app);
+    }
+    app->gamepage->frog.image->x = GP_FROG_X;
+    app->gamepage->frog.image->y = GP_FROG_Y;
 }
 
 bool CheckObjInWindow(Obj *obj)

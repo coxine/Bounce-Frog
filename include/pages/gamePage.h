@@ -39,6 +39,7 @@ void InitNewGame(App *app);
 void DrawScore(App *app);
 void InitFlorr(int florrID);
 bool CheckObjInWindow(Obj *obj);
+void GodMoveFlorrAndFrog(App *app, double frogHopTime, int minFlorr, int maxFlorr);
 void MoveFlorrAndFrog(App *app, int frogHopTime, int minFlorr, int maxFlorr);
 void DestroyFlorr(App *app);
 #endif
