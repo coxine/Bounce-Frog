@@ -15,7 +15,19 @@ QuitPage *InitQuitPage()
 void qpKontinueOnClick()
 {
     PlayChunk(CHUNK_BEST);
-    DrawStartPage(&app);
+    switch (app.quitpage->lastScene) {
+    case StartScene:
+        DrawStartPage(&app);
+        break;
+    case GameScene:
+        DrawGamePage(&app);
+        break;
+    case OverScene:
+        DrawOverPage(&app);
+        break;
+    default:
+        break;
+    }
 }
 
 void qpQuitOnClick()
@@ -26,6 +38,7 @@ void qpQuitOnClick()
 }
 void DrawQuitPage(App *app)
 {
+    app->quitpage->lastScene = app->curScene;
     app->curScene = QuitScene;
     changeBgColor(app, app->bgColor);
     LoadButton(app, app->quitpage->kontinue);

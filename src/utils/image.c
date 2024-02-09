@@ -17,6 +17,18 @@ Image *InitImage(char *file, int height, int width, char *name, int x, int y)
     return img;
 }
 
+void UpdateImage(Image *img, char *file, int height, int width, char *name, int x, int y)
+{
+    img->height = height;
+    img->width = width;
+    img->x = x;
+    img->y = y;
+    img->file = malloc(strlen(file) + 1);
+    strcpy(img->file, file);
+    img->name = malloc(strlen(name) + 1);
+    strcpy(img->name, name);
+}
+
 void LoadImage(App *app, Image *img)
 {
     // Create Surface & Rect
@@ -43,4 +55,11 @@ void LoadImage(App *app, Image *img)
     SDL_FreeSurface(src);
     SDL_DestroyTexture(texture);
     free(rect);
+}
+
+void DestroyImage(Image *img)
+{
+    free(img->file);
+    free(img->name);
+    free(img);
 }

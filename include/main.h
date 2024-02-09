@@ -8,6 +8,8 @@
 #define START_Y 100
 #define WINDOW_TITLE "青蛙跳跳"
 
+#define MAX_SCORE_STR_LEN 50
+
 #include <common.h>
 
 // 解绑

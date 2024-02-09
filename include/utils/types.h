@@ -12,6 +12,8 @@ enum scene {
     QuitScene       // 退出界面
 };
 
+typedef double Speed;
+
 typedef struct {
     int height;
     int width;
@@ -20,6 +22,12 @@ typedef struct {
     char *name;
     char *file;
 } Image;
+
+typedef struct {
+    Image *image;
+    Speed speedX;
+    Speed speedY;
+} Obj;
 
 typedef struct {
     Image *img;
@@ -51,7 +59,24 @@ typedef struct {
 typedef struct {
     Button *kontinue;
     Button *quit;
+    enum scene lastScene;
 } QuitPage;
+
+typedef struct {
+    bool isGodMode;
+    int curFlorr;
+    int minFlorr; // 可见区域的花朵的最小值
+    int maxFlorr; // 可见区域花朵的最大值
+    Obj frog;
+    Obj *florr;
+
+    char *curScoreStr;
+    char *maxScoreStr;
+    Text *curScore;
+    Text *maxScore;
+
+    Text *broadcast;
+} GamePage;
 
 typedef struct {
     Button *home;
@@ -80,6 +105,7 @@ typedef struct {
     StartPage *startpage;
     QuitPage *quitpage;
     OverPage *overpage;
+    GamePage *gamepage;
     SDL_Color bgColor;
 } App;
 #endif

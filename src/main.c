@@ -53,4 +53,5 @@ void StartUp()
     app.startpage = InitStartPage();
     app.quitpage = InitQuitPage();
     app.overpage = InitOverPage();
+    app.gamepage = InitGamePage();
 }

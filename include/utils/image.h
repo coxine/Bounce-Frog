@@ -5,5 +5,6 @@
 
 Image *InitImage(char *file, int height, int width, char *name, int x, int y);
 void LoadImage(App *app, Image *img);
-
+void UpdateImage(Image *img, char *file, int height, int width, char *name, int x, int y);
+void DestroyImage(Image *img);
 #endif

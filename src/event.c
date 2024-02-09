@@ -47,14 +47,22 @@ void StartSceneEvent(App *app)
         break;
     case SDL_MOUSEBUTTONDOWN:
         if (isClick(app->startpage->startGame)) {
-            DrawOverPage(app); // for test
+            app->gamepage->isGodMode = 0;
+            InitNewGame(app);
             return;
         }
         if (isClick(app->startpage->godMode)) {
-            puts("222");
+            app->gamepage->isGodMode = 1;
+            InitNewGame(app);
             return;
         }
         break;
+    case SDL_KEYDOWN:
+        if ((*(app->event)).key.keysym.scancode == SDL_SCANCODE_ESCAPE) {
+            DrawQuitPage(app);
+        }
+        break;
+
     default:
         break;
     }
